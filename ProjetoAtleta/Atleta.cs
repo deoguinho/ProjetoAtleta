@@ -3,30 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ProjetoAtleta
 {
     class Atleta
     {
+
+        /* Atributos */
+
         private string nome;
-        private double altura, peso;
+        private double peso, altura;
         private int idade;
+
+        /* Getters & Setters */
 
         public string Nome
         {
             set
             {
-                if (value != string.Empty)
+                if(value!= string.Empty)
                 {
                     this.nome = value;
                 }
                 else
                 {
-                    throw new Exception("O nome deve ser obrigatoriamente preenchido.");
+                    throw new Exception("O nome deve ser preenchido");
                 }
             }
-            get { return this.nome; }
+            get
+            {
+                return this.nome;
+            }
         }
 
         public double Altura
@@ -39,57 +46,64 @@ namespace ProjetoAtleta
                 }
                 else
                 {
-                    throw new Exception("A altura dever ser de pelo menos 1 metro");
+                    throw new Exception("Altura inválida");
                 }
             }
-            get { return this.altura; }
+            get
+            {
+                return this.altura;
+            }
         }
 
         public double Peso
         {
             set
             {
-                if(value > 1)
+                if (value >= 1)
                 {
                     this.peso = value;
                 }
                 else
                 {
-                    throw new Exception("A altura dever ser de pelo menos 1 metro");
+                    throw new Exception("Peso inválido");
                 }
             }
-            get { return this.peso; }
+            get
+            {
+                return this.peso;
+            }
         }
 
         public int Idade
         {
             set
             {
-                if (value >= 1)
+                if(value >= 1)
                 {
                     this.idade = value;
                 }
                 else
                 {
-                    throw new Exception("A idade tem que pelo menos 1 ano");
+                    throw new Exception("Idade inválida");
                 }
             }
-            get { return this.idade; }
+            get
+            {
+                return this.idade;
+            }
         }
-
-        public string ImprimeDados()
+        /* Métodos */
+        public string ImprimirDados()
         {
-            return "Dados da pessoa: \n Nome: " + this.nome +
-            "\nAltura" + this.altura + "m" + "\nPeso: " + this.peso.ToString("0.00") +
-            "\nIdade: " + this.idade;
+            return "Dados do atleta:\nNome: " + this.nome +
+                "\nAltura: " + this.altura +
+                "\nPeso: " + this.peso +
+                "\nIdade: " + this.idade;
         }
 
         public double CalcularIMC()
         {
-
             return (this.peso / Math.Pow(this.altura, 2));
-
         }
     }
 }
-

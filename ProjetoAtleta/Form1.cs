@@ -10,44 +10,45 @@ using System.Windows.Forms;
 
 namespace ProjetoAtleta
 {
-    public partial class frmPrincipal : Form
+    public partial class Form1 : Form
     {
-        public frmPrincipal()
+        public Form1()
         {
             InitializeComponent();
         }
 
         Atleta obj = new Atleta();
 
-        private void btn_calc_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Dados Obtidos: " + obj.ImprimeDados() + "\nIMC: " + obj.CalcularIMC().ToString());
-            lbl_imc.Text = obj.CalcularIMC().ToString("0.00");
-            
-        }
 
-        private void btn_enviar_Click(object sender, EventArgs e)
+        private void btnCalcular_Click(object sender, EventArgs e)
         {
+
             try
             {
+
+                /* Enviar os dados para a classe */
+
                 obj.Nome = txtNome.Text;
                 obj.Altura = double.Parse(txtAltura.Text);
                 obj.Idade = int.Parse(txtIdade.Text);
                 obj.Peso = double.Parse(txtPeso.Text);
+
+                lblIMC.Text = (obj.CalcularIMC().ToString("0.00"));
+                MessageBox.Show(obj.ImprimirDados() +
+                    "\nIMC: " + obj.CalcularIMC().ToString("0.00"));
+
             }
+
+            /* Tratamento de exceções */
+
             catch (FormatException ex)
             {
-                MessageBox.Show("Erro de execução.\n" + ex.Message);
+                MessageBox.Show("Me desculpe, ocorreu um erro.\n" + ex.Message);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }     
-     
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
         }
     }
